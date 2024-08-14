@@ -1,21 +1,27 @@
 <?php
 
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\PlansController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Frontend\FileController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\PackagesController;
 use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\CategoriesController;
 
-
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/admin', function () {
   return view('admin.dashboard.index');
 });
+
+Route::namespace('Frontend')->group(function () {
+
+  Route::get('file/{file_id}', [FileController::class, 'details'])->name('frontend.files.details');
+});
+
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
 
