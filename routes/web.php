@@ -20,6 +20,7 @@ Route::get('/admin', function () {
 Route::namespace('Frontend')->group(function () {
 
   Route::get('file/{file_id}', [FileController::class, 'details'])->name('frontend.files.details');
+  Route::get('file/download/{file_id}', [FileController::class, 'download'])->name('frontend.files.download');
 });
 
 

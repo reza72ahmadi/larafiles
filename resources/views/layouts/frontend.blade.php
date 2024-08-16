@@ -12,7 +12,7 @@
 </head>
 
 <body dir="rtl">
-
+@include('frontend.partials.nav')
     <div class="container">
         <div class="card mt-5">
             <div class="row">
