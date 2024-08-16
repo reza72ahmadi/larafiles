@@ -20,13 +20,8 @@
             <div class="card-body">
                 @if (App\Utility\User::is_user_subscribed($current_user))
                     <a href="">دانلود فایل</a>
-                    {{-- {{ route('download.file', ['file_id' => $file_item->id]) }} --}}
-                    {{-- {{ route('purchase.file', ['file_id' => $file_item->id]) }} --}}
                 @else
-                    <form action="" method="post">
-                        @csrf
-                        <button class="btn btn-success btn-lg btn-block">خرید این فایل</button>
-                    </form>
+                    <a href="{{ route('frontend.plans.index') }}">خرید فایل</a>
                 @endif
             </div>
         </div>

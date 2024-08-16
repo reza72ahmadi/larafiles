@@ -9,6 +9,11 @@ class Subscribe extends Model
 {
     use HasFactory;
     protected $guarded = ['subscrib_id'];
+    public $timestamps = false;
+    protected $date = [
+        'subscrib_created_at',
+        'subscrib_expire_at',
+    ];
 
     public $table = "subscribs";
     protected $dates = ['subscrib_expire_at'];
