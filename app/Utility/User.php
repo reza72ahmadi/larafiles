@@ -11,7 +11,6 @@ namespace App\Utility;
 //     }
 // }
 
-//--------------------------
 
 class User
 {

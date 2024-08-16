@@ -10,7 +10,6 @@ class PlansController extends Controller
 {
     public function index()
     {
-
         $plans = Plan::all();
         return view('admin.plan.list', compact('plans'))->with('panel_title', "لیست طرح ها");
     }
