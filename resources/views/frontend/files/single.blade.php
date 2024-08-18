@@ -19,7 +19,7 @@
             <div class="card-header">خرید فایل</div>
             <div class="card-body">
                 @if (App\Utility\User::is_user_subscribed($current_user))
-                    <a href="">دانلود فایل</a>
+                    <a href="{{ route('frontend.files.download', [$file_item->file_id]) }}">دانلود فایل</a>
                 @else
                     <a href="{{ route('frontend.plans.index') }}">خرید فایل</a>
                 @endif

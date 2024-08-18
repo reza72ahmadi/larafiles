@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\PlansController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Frontend\UsersController as UserController;
 use App\Http\Controllers\Frontend\FileController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PlanController;
 use App\Http\Controllers\Admin\PackagesController;
 use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\SubscribeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -18,6 +20,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/admin', function () {
   return view('admin.dashboard.index');
 });
+
+//user auth
+Route::get('account/login', [UserController::class, 'login'])->name('login');
+Route::post('account/login', [UserController::class, 'dologin'])->name('post.login');
+
+Route::get('account/register', [UserController::class, 'register'])->name('register');
+Route::post('account/register', [UserController::class, 'doRegister'])->name('post.register');
+Route::get('account/logout', [UserController::class, 'logout'])->name('logout');
+
+//user dashboard
+
+ Route::get('/dashboard',[DashboardController::class, 'index'])->name('user.dashboard');
 
 Route::namespace('Frontend')->group(function () {
 
@@ -27,8 +41,8 @@ Route::namespace('Frontend')->group(function () {
   //files
   Route::get('file/{file_id}', [FileController::class, 'details'])->name('frontend.files.details');
   Route::get('file/download/{file_id}', [FileController::class, 'download'])->name('frontend.files.download');
+  Route::get('/access', [FileController::class, 'access'])->name('frontend.files.access');
 });
-
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
 

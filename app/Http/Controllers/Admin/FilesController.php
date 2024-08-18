@@ -40,8 +40,11 @@ class FilesController extends Controller
             'file_name' => $file->getFilename(),
         ];
 
-        $file->storeAs('files', $file->getClientOriginalName());
-
+        $new_file_name = $file->storeAs('files', $file->getClientOriginalName());
+        $result = $request->file('fileItem')->move(public_path('imges'), $new_file_name);
+        if ($result instanceof \Symfony\component\HttpFoundation\File\File) {
+            $new_file_date['file_name'] = $new_file_name;
+        }
         File::create($new_file_data);
         return redirect()->route('admin.files.list')->with('success', 'فایل جدید با موفقیت ذخیره شد');
     }
@@ -52,13 +55,4 @@ class FilesController extends Controller
         $file = File::find($id);
         return view('admin.file.edit', compact('file'))->with(['panel_title' => 'ویرایش فایل ']);
     }
-
-    public function update(Request $request, string $id) {}
-
-    // public function destroy(string $id)
-    // {
-    //     $file = File::findOrfail($id);
-    //     $file->delete();
-    //     return redirect()->route('admin.files.list')->with('success', 'فایل باموفقیت حذف شد');
-    // }
 }

@@ -22,9 +22,9 @@
                     <td>{{ $file->file_size }}</td>
                     <td>{{ $file->file_name }}</td>
                     <td>
-                        <a href="{{ route('admin.filse.destroy', $file->id) }}"><i class="fa fa-trash"></i></a>
+                        <a href="{{ route('admin.filse.destroy', $file->file_id) }}"><i class="fa fa-trash"></i></a>
                         &NonBreakingSpace;
-                        <a href="{{ route('admin.files.edit', $file->id) }}"><i class="fa fa-edit"></i></a>
+                        <a href="{{ route('admin.files.edit', $file->file_id) }}"><i class="fa fa-edit"></i></a>
                     </td>
                 </tr>
             @endforeach

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     use HasFactory;
+    protected $table = 'files';
+    protected $primarykey  = 'file_id';
 
     protected $fillable = [
         'file_title',

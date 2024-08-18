@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,11 +45,14 @@ class User extends Authenticatable
         return $this->hasMany(Subscribe::class, 'subscrib_user_id');
     }
 
+    public function currentSubscribe()
+    {
+        return $this->subscribes()->where('subscrib_expire_at', '>=', Carbon::now());
+    }
+
 
     public function packages()
     {
         return $this->belongsToMany(Package::class, 'user_packages', 'user_id', 'package_id')->withPivot('amount', 'created_at');
     }
-
-
 }

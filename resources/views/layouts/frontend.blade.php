@@ -12,14 +12,12 @@
 </head>
 
 <body dir="rtl">
-@include('frontend.partials.nav')
+    @include('frontend.partials.nav')
     <div class="container">
-        <div class="card mt-5">
-            <div class="row">
-                <h5>
-                    @yield('content')
-                </h5>
-            </div>
+        <div class="row">
+            <h5>
+                @yield('content')
+            </h5>
         </div>
     </div>
 

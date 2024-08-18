@@ -8,7 +8,7 @@
                 @if ($files && count($files) > 0)
                     <ul>
                         @foreach ($files as $file)
-                            <li> <a href="{{ route('frontend.files.details', $file->id) }}">{{ $file->file_title }}</a>
+                            <li> <a href="{{ route('frontend.files.details', $file->file_id) }}">{{ $file->file_title }}</a>
                             </li>
                         @endforeach
                     </ul>
