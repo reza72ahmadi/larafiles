@@ -31,7 +31,7 @@ Route::get('account/logout', [UserController::class, 'logout'])->name('logout');
 
 //user dashboard
 
- Route::get('/dashboard',[DashboardController::class, 'index'])->name('user.dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 
 Route::namespace('Frontend')->group(function () {
 
@@ -43,8 +43,7 @@ Route::namespace('Frontend')->group(function () {
   Route::get('file/download/{file_id}', [FileController::class, 'download'])->name('frontend.files.download');
   Route::get('/access', [FileController::class, 'access'])->name('frontend.files.access');
 });
-
-Route::prefix('admin')->namespace('Admin')->group(function () {
+Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
 
   // user rout
   Route::get('/users', [UsersController::class, 'index'])->name('admin.users.list');

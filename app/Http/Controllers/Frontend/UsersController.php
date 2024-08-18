@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+
     public function login()
     {
         return view('frontend.users.login');

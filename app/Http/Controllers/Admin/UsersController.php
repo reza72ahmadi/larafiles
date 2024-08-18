@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
-use App\Models\Package;
 use App\Models\User;
+use App\Models\Package;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        if (!Auth::check()) {
+            abort(403, 'Unauthorized'); 
+        }
+    }
+   
+
     public function index()
     {
         $users = User::all();
@@ -77,19 +87,19 @@ class UsersController extends Controller
         return redirect()->route('admin.users.list')->with('success', 'کاربر باموفقیت حذف شد');
     }
 
-    public function packages(Request $request, $user_id) {
+    public function packages(Request $request, $user_id)
+    {
         $user = User::find($user_id);
-  
+
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
-        
-        
+
+
         $user_packages = $user->packages()->get(); // Assuming packages is a relationship
-        
-  
+
+
         return view('admin.user.packages', compact('user_packages'))
-               ->with('panel_title', 'نمایش پکیج های کاربر');
+            ->with('panel_title', 'نمایش پکیج های کاربر');
     }
-    
 }
